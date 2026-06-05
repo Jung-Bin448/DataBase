@@ -194,3 +194,40 @@ BEGIN
    vn_counter := vn_counter + 1;
  END LOOP;
 END;
+/
+
+-- SECOND DAY
+
+DECLARE
+  2  vc_firstname     VARCHAR2(30) := 'SMITH';
+  3  vc_surname       students.surname%TYPE;
+  4  vn_student_id    NUMBER(2);
+  5  BEGIN
+
+
+--Example
+CREATE OR REPLACE PROCEDURE proc_add_subject
+
+vc_subject_name subject_areas.subject_name%TYPE := 'NEW SUBJECT NAME';
+
+BEGIN
+    
+    INSERT INTO subject_areas
+    VALUES(seq_subject_id.nextval,vc_subject_name);
+
+END proc_add_subject;
+/
+SHOW ERRORS;
+
+--Example parameter
+CREATE OR REPLACE PROCEDURE proc_param
+    (in_subject_id  subject_areas.subject_id%TYPE)IS 
+BEGIN
+
+    DELETE from subject_areas
+    WHERE subject_id = in_subject_id;
+
+END proc_param;
+/
+
+execute proc_param(60)
